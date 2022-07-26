@@ -50,6 +50,11 @@ body {
 	margin-bottom: 0px;
 }
 
+.standard-gap {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .sidebar .nav-item {
 	width: 100%;
 }
