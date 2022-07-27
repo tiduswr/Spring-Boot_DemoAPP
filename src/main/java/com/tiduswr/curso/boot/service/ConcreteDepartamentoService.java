@@ -43,4 +43,13 @@ public class ConcreteDepartamentoService implements DepartamentoService{
     public List<Departamento> buscarTodos() {
         return dao.findAll();
     }
+
+    @Override
+    public boolean departamentoPossuiCargo(Long id) throws IllegalArgumentException{
+        Departamento d = buscarPorId(id);
+        if(d != null){
+            return !d.getCargos().isEmpty();
+        }
+        throw new IllegalArgumentException("Esse ID não existe na base de dados de Departamento");
+    }
 }

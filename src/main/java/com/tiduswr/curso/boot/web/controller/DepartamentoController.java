@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/departamentos")
-public class DepartamentoController {
+public class DepartamentoController{
 
     @Autowired
     private DepartamentoService service;
@@ -38,20 +39,37 @@ public class DepartamentoController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Departamento d){
+    //RedirectAttribute é usado quando existe a palavra "redirect:"
+    public String salvar(Departamento d, RedirectAttributes attr){
         service.salvar(d);
+        attr.addFlashAttribute("success", "Departamento salvo com Sucesso!");
         return "redirect:/departamentos/cadastrar";
     }
 
     @GetMapping("/editar/{id}")
-    public String preEditar(@PathVariable Long id, ModelMap model){
+    public String preEditar(@PathVariable("id") Long id, ModelMap model){
         model.addAttribute("departamento", service.buscarPorId(id));
         return "/departamento/cadastro";
     }
 
     @PostMapping("/editar")
-    public String editar(Departamento d){
+    public String editar(Departamento d, RedirectAttributes attr){
         service.editar(d);
+        attr.addFlashAttribute("success", "Departamento editado com Sucesso!");
         return "redirect:/departamentos/listar";
     }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, ModelMap modelMap){
+        if(!service.departamentoPossuiCargo(id)){
+            service.excluir(id);
+            modelMap.addAttribute("success",
+                    "Departamento excluido com sucesso!");
+        }else{
+            modelMap.addAttribute("fail",
+                    "Departamento não removido. Possui cargos vinculado(s)!");
+        }
+        return listar(modelMap);
+    }
+
 }
