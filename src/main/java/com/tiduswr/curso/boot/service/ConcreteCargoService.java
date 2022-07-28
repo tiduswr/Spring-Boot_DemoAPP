@@ -41,4 +41,11 @@ public class ConcreteCargoService implements CargoService{
     public List<Cargo> buscarTodos() {
         return dao.findAll();
     }
+
+    @Override
+    public boolean cargoTemFuncionario(Long id) {
+        Cargo c = dao.findById(id);
+        if(c != null) return !c.getFuncionarios().isEmpty();
+        return false;
+    }
 }

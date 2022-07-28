@@ -8,7 +8,16 @@ html, body {
 body {
 	padding-top: 56px;
 	padding-left: 0;
-} 
+}
+
+.bg-purple{
+    background-color: #3e1d70;
+}
+
+.bg-purple .navbar-brand,
+.bg-purple .navbar-text {
+    color: green;
+}
 
 /*
  * main layout
@@ -92,7 +101,7 @@ body {
  */
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
 	color: #fff;
-	background-color: #1e94d2;
+	background-color: #4a1994;
 }
 
 /*
