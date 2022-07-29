@@ -10,6 +10,7 @@ $('#ok_confirm').click(function(){
 
 $(function() {
     $('[data-toggle="popover"]').popover();
+    $('[data-bs-toggle="popover"]').popover();
 });
 
 $(document).ready(function(){
