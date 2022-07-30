@@ -9,8 +9,14 @@ $('#ok_confirm').click(function(){
 })
 
 $(function() {
-    $('[data-toggle="popover"]').popover();
-    $('[data-bs-toggle="popover"]').popover();
+    $('[data-bs-toggle="popover"]').popover({
+        html: true,
+        title : '<a href="#" class="close" data-bs-dismiss="alert" align="right">X</a>'
+    });
+});
+
+$(document).on("click", ".popover .close" , function(){
+    $(this).parents(".popover").popover('hide');
 });
 
 $(document).ready(function(){
