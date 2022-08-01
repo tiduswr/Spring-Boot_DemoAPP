@@ -1,0 +1,2 @@
+execute no terminal dentro da pasta raiz da aplicação "$mvnw package", 
+depois é só ir na pasta TARGET e executar o .jar através do comando "$java -jar 'seu-app'.jar"

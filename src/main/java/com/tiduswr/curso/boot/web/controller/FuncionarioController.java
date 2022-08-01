@@ -35,13 +35,13 @@ public class FuncionarioController {
 
     @GetMapping("/cadastrar")
     public String cadastrar(Funcionario f){
-        return "/funcionario/cadastro";
+        return "funcionario/cadastro";
     }
 
     @GetMapping("/listar")
     public String listar(ModelMap model){
         model.addAttribute("funcionarios", funcionarioService.buscarTodos());
-        return "/funcionario/lista";
+        return "funcionario/lista";
     }
 
     @GetMapping("/editar/{id}")
@@ -52,7 +52,7 @@ public class FuncionarioController {
 
     @PostMapping("/editar")
     public String editar(@Valid Funcionario f, BindingResult result, RedirectAttributes attr){
-        if(result.hasErrors()) return "/funcionario/cadastro";
+        if(result.hasErrors()) return "funcionario/cadastro";
 
         funcionarioService.editar(f);
         attr.addFlashAttribute("success", "O Funcionário foi editado com sucesso!");
@@ -61,7 +61,7 @@ public class FuncionarioController {
 
     @PostMapping("/salvar")
     public String salvar(@Valid Funcionario f, BindingResult result, RedirectAttributes attr){
-        if(result.hasErrors()) return "/funcionario/cadastro";
+        if(result.hasErrors()) return "funcionario/cadastro";
 
         funcionarioService.salvar(f);
         attr.addFlashAttribute("success", "O funcionário foi inserido com Sucesso!");
@@ -78,13 +78,13 @@ public class FuncionarioController {
     @GetMapping("/buscar/nome")
     public String getPorNome(@RequestParam("nome") String nome, ModelMap map){
         map.addAttribute("funcionarios", funcionarioService.buscarPorNome(nome));
-        return "/funcionario/lista";
+        return "funcionario/lista";
     }
 
     @GetMapping("/buscar/cargo")
     public String getPorCargo(@RequestParam("id") Long id, ModelMap map){
         map.addAttribute("funcionarios", funcionarioService.buscarPorCargo(id));
-        return "/funcionario/lista";
+        return "funcionario/lista";
     }
 
     @GetMapping("/buscar/data")
@@ -94,7 +94,7 @@ public class FuncionarioController {
                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate saida,
                               ModelMap map){
         map.addAttribute("funcionarios", funcionarioService.buscarPorDatas(entrada, saida));
-        return "/funcionario/lista";
+        return "funcionario/lista";
     }
 
     @ModelAttribute("cargos")

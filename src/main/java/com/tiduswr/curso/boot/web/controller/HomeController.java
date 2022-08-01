@@ -9,7 +9,7 @@ public class HomeController {
     //Acessa o Template home.html
     @GetMapping("/")
     public String home(){
-        return "/home";
+        return "home";
     }
 
 }

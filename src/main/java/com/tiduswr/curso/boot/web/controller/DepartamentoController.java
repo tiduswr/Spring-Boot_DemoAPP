@@ -25,7 +25,7 @@ public class DepartamentoController{
 
     @GetMapping("/cadastrar")
     public String cadastrar(Departamento d){
-        return "/departamento/cadastro";
+        return "departamento/cadastro";
     }
 
     @GetMapping("/listar")
@@ -37,14 +37,14 @@ public class DepartamentoController{
                 .collect(Collectors.toList());
         }
         model.addAttribute("departamentos", l);
-        return "/departamento/lista";
+        return "departamento/lista";
     }
 
     @PostMapping("/salvar")
     //RedirectAttribute é usado quando existe a palavra "redirect:"
     public String salvar(@Valid Departamento d, BindingResult result, RedirectAttributes attr){
 
-        if(result.hasErrors()) return "/departamento/cadastro";
+        if(result.hasErrors()) return "departamento/cadastro";
 
         service.salvar(d);
         attr.addFlashAttribute("success", "Departamento salvo com Sucesso!");
@@ -54,13 +54,13 @@ public class DepartamentoController{
     @GetMapping("/editar/{id}")
     public String preEditar(@PathVariable("id") Long id, ModelMap model){
         model.addAttribute("departamento", service.buscarPorId(id));
-        return "/departamento/cadastro";
+        return "departamento/cadastro";
     }
 
     @PostMapping("/editar")
     public String editar(@Valid Departamento d, BindingResult result, RedirectAttributes attr){
 
-        if(result.hasErrors()) return "/departamento/cadastro";
+        if(result.hasErrors()) return "departamento/cadastro";
 
         service.editar(d);
         attr.addFlashAttribute("success", "Departamento editado com Sucesso!");

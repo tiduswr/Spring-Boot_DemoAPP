@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link rel="icon" href="/image/favicon.png" />
+        <link rel="icon" th:href="@{/image/favicon.png}" />
 
         <!-- Bootstrap core CSS-->
         <link
@@ -20,10 +20,10 @@
         />
 
         <!-- Open Iconic-->
-        <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+        <link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}" rel="stylesheet" />
 
         <!-- Custom styles for this template -->
-        <link href="/css/style.css" rel="stylesheet" />
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
     </head>
     <body>
         <header th:replace = "fragments/header :: cabecalho">
@@ -48,10 +48,10 @@
         <!-- Placed at the end of the document so the pages load faster -->
 
         <!-- ✅ load JQuery ✅ -->
-        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 
         <!-- ✅ load JQuery Mask Handle ✅ -->
-        <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+        <script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
 
         <!-- ✅ load popper.js ✅ -->
         <script
