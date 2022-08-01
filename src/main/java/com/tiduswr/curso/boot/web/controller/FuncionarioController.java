@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,14 +44,18 @@ public class FuncionarioController {
     }
 
     @PostMapping("/editar")
-    public String editar(Funcionario f, RedirectAttributes attr){
+    public String editar(@Valid Funcionario f, BindingResult result, RedirectAttributes attr){
+        if(result.hasErrors()) return "/funcionario/cadastro";
+
         funcionarioService.editar(f);
         attr.addFlashAttribute("success", "O Funcionário foi editado com sucesso!");
         return "redirect:/funcionarios/listar";
     }
 
     @PostMapping("/salvar")
-    public String salvar(Funcionario f, RedirectAttributes attr){
+    public String salvar(@Valid Funcionario f, BindingResult result, RedirectAttributes attr){
+        if(result.hasErrors()) return "/funcionario/cadastro";
+
         funcionarioService.salvar(f);
         attr.addFlashAttribute("success", "O funcionário foi inserido com Sucesso!");
         return "redirect:/funcionarios/cadastrar";

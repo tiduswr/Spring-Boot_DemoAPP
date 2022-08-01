@@ -15,7 +15,7 @@ public class DemoMvcApplication {
 		SpringApplication.run(DemoMvcApplication.class, args);
 	}
 
-	//Configura o locale padrão para dtrabalhar com valores monetários
+	//Configura o locale padrão para trabalhar com valores monetários
 	@Bean
 	public LocaleResolver localeResolver(){
 		return new FixedLocaleResolver(new Locale("pt", "BR"));

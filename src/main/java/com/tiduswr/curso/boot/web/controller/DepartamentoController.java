@@ -5,12 +5,14 @@ import com.tiduswr.curso.boot.service.DepartamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +42,10 @@ public class DepartamentoController{
 
     @PostMapping("/salvar")
     //RedirectAttribute é usado quando existe a palavra "redirect:"
-    public String salvar(Departamento d, RedirectAttributes attr){
+    public String salvar(@Valid Departamento d, BindingResult result, RedirectAttributes attr){
+
+        if(result.hasErrors()) return "/departamento/cadastro";
+
         service.salvar(d);
         attr.addFlashAttribute("success", "Departamento salvo com Sucesso!");
         return "redirect:/departamentos/cadastrar";
@@ -53,7 +58,10 @@ public class DepartamentoController{
     }
 
     @PostMapping("/editar")
-    public String editar(Departamento d, RedirectAttributes attr){
+    public String editar(@Valid Departamento d, BindingResult result, RedirectAttributes attr){
+
+        if(result.hasErrors()) return "/departamento/cadastro";
+
         service.editar(d);
         attr.addFlashAttribute("success", "Departamento editado com Sucesso!");
         return "redirect:/departamentos/listar";

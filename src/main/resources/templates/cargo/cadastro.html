@@ -28,6 +28,9 @@
 			<div th:replace="fragments/alert"></div>
 
 			<form th:action="${cargo.id == null} ? @{/cargos/salvar} : @{/cargos/editar}" th:object="${cargo}" method="POST">
+
+				<div th:replace="fragments/validacao :: validacao"></div>
+
 				<div class="row">
 					<div class="col-md-4">
 						<label for="nome" class="form-label">Nome do Cargo</label>
