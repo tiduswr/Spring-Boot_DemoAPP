@@ -2,6 +2,7 @@ package com.tiduswr.curso.boot.service;
 
 import com.tiduswr.curso.boot.dao.CargoDAO;
 import com.tiduswr.curso.boot.domain.Cargo;
+import com.tiduswr.curso.boot.util.PaginacaoUTIL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,5 +48,15 @@ public class ConcreteCargoService implements CargoService{
         Cargo c = dao.findById(id);
         if(c != null) return !c.getFuncionarios().isEmpty();
         return false;
+    }
+
+    @Override
+    public PaginacaoUTIL<Cargo> buscarPorPagina(int tamanho, int pagina, String direcao){
+        return dao.buscaPaginada(tamanho, pagina, direcao);
+    }
+
+    @Override
+    public long getQtdRegistros() {
+        return dao.count();
     }
 }

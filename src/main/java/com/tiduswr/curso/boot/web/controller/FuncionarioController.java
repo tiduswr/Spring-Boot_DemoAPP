@@ -28,7 +28,7 @@ public class FuncionarioController {
     @Autowired
     private CargoService cargoService;
 
-    @InitBinder
+    @InitBinder("funcionario")
     public void initBinder(WebDataBinder binder){
         binder.addValidators(new FuncionarioValidator());
     }

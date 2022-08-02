@@ -4,6 +4,7 @@ import com.tiduswr.curso.boot.domain.Cargo;
 import com.tiduswr.curso.boot.domain.Departamento;
 import com.tiduswr.curso.boot.service.CargoService;
 import com.tiduswr.curso.boot.service.DepartamentoService;
+import com.tiduswr.curso.boot.util.PaginacaoUTIL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/cargos")
@@ -29,8 +31,14 @@ public class CargoController {
     }
 
     @GetMapping("/listar")
-    public String listar(ModelMap map){
-        map.addAttribute("cargos", cargoService.buscarTodos());
+    public String listar(ModelMap map, @RequestParam("page") Optional<Integer> page,
+                         @RequestParam("dir") Optional<String> dir){
+
+        int currentPage = page.orElse(1);
+        String ordem = dir.orElse("ASC");
+        PaginacaoUTIL<Cargo> pageCargo = cargoService.buscarPorPagina(5, currentPage, ordem);
+
+        map.addAttribute("pageCargo", pageCargo);
         return "cargo/lista";
     }
 

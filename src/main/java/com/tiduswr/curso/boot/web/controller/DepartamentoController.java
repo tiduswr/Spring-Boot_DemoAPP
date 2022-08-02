@@ -30,13 +30,7 @@ public class DepartamentoController{
 
     @GetMapping("/listar")
     public String listar(ModelMap model){
-        List<Departamento> l = service.buscarTodos();
-        if(l != null){
-            l = l.stream()
-                .sorted((o1, o2) -> o1.getId().compareTo(o2.getId()))
-                .collect(Collectors.toList());
-        }
-        model.addAttribute("departamentos", l);
+        model.addAttribute("departamentos", service.buscarTodos());
         return "departamento/lista";
     }
 
