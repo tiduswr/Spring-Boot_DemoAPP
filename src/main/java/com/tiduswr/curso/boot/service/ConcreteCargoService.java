@@ -51,8 +51,8 @@ public class ConcreteCargoService implements CargoService{
     }
 
     @Override
-    public PaginacaoUTIL<Cargo> buscarPorPagina(int tamanho, int pagina, String direcao){
-        return dao.buscaPaginada(tamanho, pagina, direcao);
+    public PaginacaoUTIL<Cargo> buscarPorPagina(int tamanho, int pagina, String direcao, String col){
+        return dao.buscaPaginada(tamanho, pagina, direcao, col);
     }
 
     @Override

@@ -11,6 +11,6 @@ public interface CargoDAO {
     public void delete(Long id);
     public Cargo findById(Long id);
     public List<Cargo> findAll();
-    public PaginacaoUTIL<Cargo> buscaPaginada(int tamanho, int pagina, String direcao);
+    public PaginacaoUTIL<Cargo> buscaPaginada(int tamanho, int pagina, String direcao, String col);
     public long count();
 }

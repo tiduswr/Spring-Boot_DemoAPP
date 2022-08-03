@@ -9,17 +9,23 @@ public class PaginacaoUTIL<T> {
     private long pageLen;
     private String direcao;
     private List<T> items;
+    private String col;
 
-    public PaginacaoUTIL(int rowLen, int page, long pageLen, String direcao, List<T> items) {
+    public PaginacaoUTIL(int rowLen, int page, long pageLen, String direcao, List<T> items, String col) {
         this.rowLen = rowLen;
         this.page = page;
         this.pageLen = pageLen;
         this.direcao = direcao;
         this.items = items;
+        this.col = col;
     }
 
     public String getDirecao() {
         return direcao;
+    }
+
+    public String getCol(){
+        return this.col;
     }
 
     public int getRowLen() {
